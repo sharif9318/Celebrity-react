@@ -21,12 +21,9 @@ const popularDishesRetriever = createSelector(
   (popularDishes) => ({ popularDishes })
 );
 
-
 export default function PopularDishes() {
-const { popularDishes } = useSelector(popularDishesRetriever);
-console.log("popular dishes:", popularDishes);
-
-
+  const { popularDishes } = useSelector(popularDishesRetriever);
+  console.log("popular dishes:", popularDishes);
 
   return (
     <div className="popular-dishes-frame">
@@ -37,6 +34,12 @@ console.log("popular dishes:", popularDishes);
             {popularDishes.length !== 0 ? (
               popularDishes.map((product: Product) => {
                 const imagePath = `${serverApi}/${product.productImages[0]}`;
+
+                const words = (product.productDesc || "")
+                  .split(/\s+/)
+                  .filter(Boolean);
+                const displayDesc =
+                  words.slice(1, 6).join(" ") + (words.length > 6 ? "..." : "");
 
                 return (
                   <CssVarsProvider key={product._id}>
@@ -87,7 +90,7 @@ console.log("popular dishes:", popularDishes);
                           startDecorator={<DescriptionOutlinedIcon />}
                           textColor="neutral.300"
                         >
-                          {product.productDesc}
+                          {displayDesc}
                         </Typography>
                       </CardOverflow>
                     </Card>

@@ -4,9 +4,8 @@
   display: flex;
   background: url("/public/img/cBanner.png");
   background-size: cover;
-  
-  background-position: center;
 
+  background-position: center;
 }
 
 .home-navbar .navbar-container {
@@ -21,8 +20,6 @@
   justify-content: space-between;
   align-items: center;
 }
-
-
 
 .home-navbar .navbar-container .menu .links {
   min-width: 700px;
@@ -42,7 +39,6 @@
   height: 50px;
   border-radius: 24px;
 }
-
 
 .home-navbar a {
   text-decoration: none;
@@ -76,7 +72,7 @@
 }
 .home-navbar .navbar-container .header-frame {
   /* margin-top: 32px; */
-  
+
   height: 462px;
   display: flex;
   flex-direction: row;
@@ -152,7 +148,6 @@
   height: 419px;
 }
 
-
 /* Other Navbar Styles */
 
 .other-navbar {
@@ -165,7 +160,6 @@
 
 .other-navbar .navbar-container {
   margin-top: 55px;
-  
 }
 
 .other-navbar .navbar-container .menu {
@@ -179,7 +173,7 @@
 .navbar-container .brand-logo {
   width: 100px;
   height: 100px;
- position: absolute;
+  position: absolute;
   top: 5%;
   left: 17%;
 }
@@ -202,7 +196,6 @@
   height: 50px;
   border-radius: 24px;
 }
-
 
 .other-navbar a {
   text-decoration: none;
