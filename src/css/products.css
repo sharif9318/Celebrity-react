@@ -19,7 +19,6 @@
   align-items: center;
 }
 
-
 .products .avatar-big-box {
   position: relative;
 
@@ -53,18 +52,17 @@
   color: #343434;
 }
 .products .single-search-big-box {
-
-width: 2fr;
+  width: 2fr;
   position: absolute;
   right: 0;
-  top: 40px; 
+  top: 40px;
   margin-right: 0;
-  width: 400px; 
+  width: 400px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
-  } 
+}
 
 .single-search-input {
   width: 300px;
@@ -82,10 +80,9 @@ width: 2fr;
   line-height: 24px;
 
   color: #343434;
-
 }
 
- .products .dishes-filter-section {
+.products .dishes-filter-section {
   margin-top: 65px;
 
   width: 90%;
@@ -118,7 +115,6 @@ width: 2fr;
 
   display: flex;
   flex-direction: row;
-
 }
 
 .products-page .products .list-category-section .product-category {
@@ -144,7 +140,7 @@ width: 2fr;
 
   gap: 50px;
   z-index: 1000;
-} 
+}
 
 .products-page .products .list-category-section .category-main .category-btn {
   width: 70px;
@@ -259,7 +255,6 @@ width: 2fr;
   font-weight: 600;
   line-height: normal;
 }
-
 
 .products-page .products .shop-btn {
   position: absolute;
@@ -379,7 +374,7 @@ width: 2fr;
   justify-content: center;
   align-items: center;
 
-  background: #0d1518;
+  background: linear-gradient(180deg, #498853 0%, #24754c 100%);
 }
 
 .products-page .products .brands-logo .brands-logo-area {
@@ -611,4 +606,3 @@ width: 2fr;
   line-height: 43px;
   margin-top: 40px;
 }
-

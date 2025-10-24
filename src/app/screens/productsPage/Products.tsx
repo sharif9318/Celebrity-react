@@ -96,7 +96,7 @@ export default function Products(props: ProductsProps) {
         <Stack flexDirection="column" alignItems="center">
           <Stack className="avatar-big-box">
             <Stack className="top-text">
-              <p>Burak Restaurant</p>
+              <p>CELEBRITY MENU</p>
               <Stack className="single-search-big-box">
                 <input
                   type="search"
@@ -167,7 +167,7 @@ export default function Products(props: ProductsProps) {
                   className="category-btn"
                   variant={"contained"}
                   color={
-                    productSearch.productCollection === ProductCollection.SET
+                    productSearch.productCollection === ProductCollection.DRINK
                       ? "primary"
                       : "secondary"
                   }
@@ -175,7 +175,7 @@ export default function Products(props: ProductsProps) {
                     searchCollectionHandler(ProductCollection.DRINK)
                   }
                 >
-                  Other
+                  DRINK
                 </Button>
                 <Button
                   className="category-btn"
@@ -196,20 +196,6 @@ export default function Products(props: ProductsProps) {
                   className="category-btn"
                   variant={"contained"}
                   color={
-                    productSearch.productCollection === ProductCollection.DRINK
-                      ? "primary"
-                      : "secondary"
-                  }
-                  onClick={() =>
-                    searchCollectionHandler(ProductCollection.DRINK)
-                  }
-                >
-                  Drink
-                </Button>
-                <Button
-                  className="category-btn"
-                  variant={"contained"}
-                  color={
                     productSearch.productCollection === ProductCollection.FRIES
                       ? "primary"
                       : "secondary"
@@ -218,7 +204,19 @@ export default function Products(props: ProductsProps) {
                     searchCollectionHandler(ProductCollection.FRIES)
                   }
                 >
-                  Fries
+                  FRIES
+                </Button>
+                <Button
+                  className="category-btn"
+                  variant={"contained"}
+                  color={
+                    productSearch.productCollection === ProductCollection.SET
+                      ? "primary"
+                      : "secondary"
+                  }
+                  onClick={() => searchCollectionHandler(ProductCollection.SET)}
+                >
+                  SET
                 </Button>
                 <Button
                   className="category-btn"
@@ -232,7 +230,7 @@ export default function Products(props: ProductsProps) {
                     searchCollectionHandler(ProductCollection.BURGER)
                   }
                 >
-                  Dish
+                  BURGER
                 </Button>
               </div>
             </Stack>
@@ -337,7 +335,7 @@ export default function Products(props: ProductsProps) {
               <Stack className={"brands-pics"}>
                 <Box
                   component={"img"}
-                  src={"/img/gurme.webp"}
+                  src={"/img/lotteriafamily.jpeg"}
                   sx={{ width: "238px", height: "329px" }}
                   borderRadius={"16px"}
                   boxShadow={
@@ -346,7 +344,7 @@ export default function Products(props: ProductsProps) {
                 ></Box>
                 <Box
                   component={"img"}
-                  src={"/img/doner.webp"}
+                  src={"/img/167340731163be2b4f2139d.jpg"}
                   sx={{ width: "238px", height: "329px" }}
                   borderRadius={"16px"}
                   boxShadow={
@@ -355,7 +353,7 @@ export default function Products(props: ProductsProps) {
                 ></Box>
                 <Box
                   component={"img"}
-                  src={"/img/gurme.webp"}
+                  src={"/img/e7963491396899.5e30b8f3dd1ba.jpg"}
                   sx={{ width: "238px", height: "329px" }}
                   borderRadius={"16px"}
                   boxShadow={
@@ -364,7 +362,7 @@ export default function Products(props: ProductsProps) {
                 ></Box>
                 <Box
                   component={"img"}
-                  src={"/img/doner.webp"}
+                  src={"/img/d28b845f391bd8040d6099e67bbaed9d.jpg"}
                   sx={{ width: "238px", height: "329px" }}
                   borderRadius={"16px"}
                   boxShadow={

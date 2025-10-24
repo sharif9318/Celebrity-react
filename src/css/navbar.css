@@ -2,7 +2,7 @@
   width: 100%;
   height: 773px;
   display: flex;
-  background: url("/public/img/cBanner.png");
+  background: url("/public/img/front-view-burger-with-chalkboard.jpg");
   background-size: cover;
 
   background-position: center;
@@ -154,7 +154,7 @@
   width: 100%;
   height: 400px;
   display: flex;
-  background: url("/public/img/cBanner.png");
+  background: url("/public/img/top-view-burgers-with-copy-space.jpg");
   background-size: cover;
 }
 

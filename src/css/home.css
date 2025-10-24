@@ -1,6 +1,7 @@
 .homepage {
   width: 100%;
   height: auto;
+  background-color: linear-gradient(180deg, #a2f7ac 0%, #89eda6 100%);
 }
 
 /** STATISTICS **/
@@ -9,7 +10,7 @@
   margin-top: 2px;
   width: 100%;
   height: 236px;
-  background: linear-gradient(135deg, #57b764 0%, #55a24b 80%);
+  background: linear-gradient(135deg, #3d5541 0%, #336a2a 80%);
 }
 
 .homepage .static-frame .info {

@@ -7,87 +7,93 @@ import { MemberUpdateInput } from "../../../lib/types/member";
 import { T } from "../../../lib/types/common";
 import { Messages, serverApi } from "../../../lib/config";
 import MemberService from "../../services/MemberService";
-import { sweetErrorHandling, sweetTopSmallSuccessAlert } from "../../../lib/sweetAlert";
+import {
+  sweetErrorHandling,
+  sweetTopSmallSuccessAlert,
+} from "../../../lib/sweetAlert";
 
 export function Settings() {
   const { authMember, setAuthMember } = useGlobals();
-const [memberImage, setMemberImage] = useState<string>(
-authMember?.memberImage
-? `${serverApi}/${authMember.memberImage}`
-: '/icons/default-user.svg'
-);
-const [memberUpdateInput, setMemberUpdateInput] = useState<MemberUpdateInput>(    {
-    memberNick: authMember?.memberNick,
-    memberPhone: authMember?.memberPhone,
-    memberAddress: authMember?.memberAddress,
-    memberDesc: authMember?.memberDesc,
-    memberImage: authMember?.memberImage,
+  const [memberImage, setMemberImage] = useState<string>(
+    authMember?.memberImage
+      ? `${serverApi}/${authMember.memberImage}`
+      : "/icons/default-user.svg"
+  );
+  const [memberUpdateInput, setMemberUpdateInput] = useState<MemberUpdateInput>(
+    {
+      memberNick: authMember?.memberNick,
+      memberPhone: authMember?.memberPhone,
+      memberAddress: authMember?.memberAddress,
+      memberDesc: authMember?.memberDesc,
+      memberImage: authMember?.memberImage,
     }
-);
+  );
 
-/*HANDLERS ***/
+  /*HANDLERS ***/
 
-const memberNickHandler = (e: T) => {
+  const memberNickHandler = (e: T) => {
     memberUpdateInput.memberNick = e.target.value;
     setMemberUpdateInput({ ...memberUpdateInput });
+  };
 
-};
-
-const memberPhoneHandler = (e: T) => {
+  const memberPhoneHandler = (e: T) => {
     memberUpdateInput.memberPhone = e.target.value;
     setMemberUpdateInput({ ...memberUpdateInput });
+  };
 
-};
-
-const memberAddressHandler = (e: T) => {
+  const memberAddressHandler = (e: T) => {
     memberUpdateInput.memberAddress = e.target.value;
     setMemberUpdateInput({ ...memberUpdateInput });
+  };
 
-};
-
-const memberDescriptionHandler = (e: T) => {
+  const memberDescriptionHandler = (e: T) => {
     memberUpdateInput.memberDesc = e.target.value;
     setMemberUpdateInput({ ...memberUpdateInput });
-};
+  };
 
-const handleSubmitButton = async () => {
+  const handleSubmitButton = async () => {
     try {
-    if (!authMember) throw new Error(Messages.error2);
-    if (
-    memberUpdateInput.memberNick === "" ||
-    memberUpdateInput.memberPhone === "" ||
-    memberUpdateInput.memberAddress === "" ||
-    memberUpdateInput.memberDesc === ""
-    ) {
+      if (!authMember) throw new Error(Messages.error2);
+      if (
+        memberUpdateInput.memberNick === "" ||
+        memberUpdateInput.memberPhone === "" ||
+        memberUpdateInput.memberAddress === "" ||
+        memberUpdateInput.memberDesc === ""
+      ) {
         throw new Error(Messages.error3);
-    }
+      }
 
-    const member = new MemberService();
-    const result = await member.updateMember(memberUpdateInput);
-    setAuthMember(result);
+      const member = new MemberService();
+      const result = await member.updateMember(memberUpdateInput);
+      setAuthMember(result);
 
-    await sweetTopSmallSuccessAlert("Modified successfully!", 700);
+      await sweetTopSmallSuccessAlert("Modified successfully!", 700);
     } catch (err) {
-    console.log(err);
-    sweetErrorHandling(err).then();
+      console.log(err);
+      sweetErrorHandling(err).then();
     }
-};
+  };
 
-const handleImageViewer = (e: T) => {
+  const handleImageViewer = (e: T) => {
     const file = e.target.files[0];
     console.log("file:", file);
     const fileType = file.type,
-    validateImageTypes = ["image/jpg", "image/jpeg", "image/png"];
+      validateImageTypes = [
+        "image/jpg",
+        "image/jpeg",
+        "image/png",
+        "image/webp",
+      ];
     if (!validateImageTypes.includes(fileType)) {
-    sweetErrorHandling(Messages.error5).then();
+      sweetErrorHandling(Messages.error5).then();
     } else {
-    if (file) {
-    memberUpdateInput.memberImage = file;
-    setMemberUpdateInput({ ...memberUpdateInput });
-    setMemberImage(URL.createObjectURL(file));
+      if (file) {
+        memberUpdateInput.memberImage = file;
+        setMemberUpdateInput({ ...memberUpdateInput });
+        setMemberImage(URL.createObjectURL(file));
+      }
     }
-    }
-};
+  };
 
   return (
     <Box className={"settings"}>
@@ -105,53 +111,64 @@ const handleImageViewer = (e: T) => {
         </div>
       </Box>
       <Box className={"input-frame"}>
-         <div className={"long-input"}> 
-          <label className={"spec-label"}>Username</label> 
-          <input 
-          className={"spec-input mb-nick"} 
-          type="text" 
-          placeholder={authMember?.memberNick} 
-          value={memberUpdateInput.memberNick} 
-          name="memberNick"
-          onChange={memberNickHandler}
+        <div className={"long-input"}>
+          <label className={"spec-label"}>Username</label>
+          <input
+            className={"spec-input mb-nick"}
+            type="text"
+            placeholder={authMember?.memberNick}
+            value={memberUpdateInput.memberNick}
+            name="memberNick"
+            onChange={memberNickHandler}
           />
-           </div> 
-           </Box> 
-           <Box className={"input-frame"}> 
-            <div className={"short-input"}> 
-              <label 
-              className={"spec-label"}>Phone</label> 
-              <input className={"spec-input mb-phone"} 
-              type="text" placeholder={authMember?.memberPhone ?? "no phone"} 
-               value={memberUpdateInput.memberPhone} 
-              name="memberPhone" 
-              onChange={memberPhoneHandler}
-              /> 
-              </div> 
-              <div className={"short-input"}> 
-                <label className={"spec-label"}>Address</label> 
-                <input className={"spec-input mb-address"} 
-                type="text" 
-                placeholder={authMember?.memberAddress ? authMember.memberAddress : "no address"} 
-                value={memberUpdateInput.memberAddress} 
-                name="memberAddress" 
-                onChange={memberAddressHandler}
-                /> 
-                </div> 
-                </Box>
-      <Box className={"input-frame"}> 
-        <div className={"long-input"}> 
-          <label className={"spec-label"}>Description</label> 
-          <textarea className={"spec-textarea mb-description"} 
-          placeholder={ authMember?.memberDesc ? authMember.memberDesc : "no description" } 
-          value={memberUpdateInput.memberDesc} 
-          name="memberDesc" 
-          onChange={memberDescriptionHandler}
-          /> </div> </Box>
+        </div>
+      </Box>
+      <Box className={"input-frame"}>
+        <div className={"short-input"}>
+          <label className={"spec-label"}>Phone</label>
+          <input
+            className={"spec-input mb-phone"}
+            type="text"
+            placeholder={authMember?.memberPhone ?? "no phone"}
+            value={memberUpdateInput.memberPhone}
+            name="memberPhone"
+            onChange={memberPhoneHandler}
+          />
+        </div>
+        <div className={"short-input"}>
+          <label className={"spec-label"}>Address</label>
+          <input
+            className={"spec-input mb-address"}
+            type="text"
+            placeholder={
+              authMember?.memberAddress
+                ? authMember.memberAddress
+                : "no address"
+            }
+            value={memberUpdateInput.memberAddress}
+            name="memberAddress"
+            onChange={memberAddressHandler}
+          />
+        </div>
+      </Box>
+      <Box className={"input-frame"}>
+        <div className={"long-input"}>
+          <label className={"spec-label"}>Description</label>
+          <textarea
+            className={"spec-textarea mb-description"}
+            placeholder={
+              authMember?.memberDesc ? authMember.memberDesc : "no description"
+            }
+            value={memberUpdateInput.memberDesc}
+            name="memberDesc"
+            onChange={memberDescriptionHandler}
+          />{" "}
+        </div>{" "}
+      </Box>
       <Box className={"save-box"}>
-        <Button variant={"contained"}
-        onClick={handleSubmitButton}
-        >Save</Button>
+        <Button variant={"contained"} onClick={handleSubmitButton}>
+          Save
+        </Button>
       </Box>
     </Box>
   );
