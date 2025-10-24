@@ -30,7 +30,7 @@
 }
 
 .home-navbar .navbar-container .menu .login-button {
-  background: #3776cc;
+  background: #038107;
   color: #f8f8ff;
 }
 
@@ -41,6 +41,7 @@
 }
 
 .home-navbar a {
+  font-weight: 800;
   text-decoration: none;
 }
 
@@ -83,6 +84,7 @@
   width: 510px;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
 }
 
 .home-navbar .navbar-container .header-frame .detail .head-main-txt {
@@ -113,7 +115,7 @@
 
 .home-navbar .navbar-container .header-frame .detail .service-txt {
   margin-top: 23px;
-  width: 153px;
+  width: 230px;
   height: 23px;
   font-family: "Roboto Serif";
   font-size: 20px;
@@ -132,7 +134,7 @@
   width: 210px;
   height: 60px;
   border-radius: 4px;
-  background: #1976d2;
+  background: #027013;
   text-align: center;
   font-family: Poppins;
   font-size: 17px;
@@ -248,7 +250,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  background: #d7b586;
+  background: #5eb105;
   border-width: 1px 0px;
   border-style: solid;
   border-color: #343434;

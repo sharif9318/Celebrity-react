@@ -162,10 +162,10 @@ export default function HomeNavbar(props: HomeNavbarProps) {
         <Stack className="header-frame">
           <Stack className="detail">
             <Box className="wel-txt">
-              <p>The Choice, not just a choice</p>
+              <p>Level Up Your Burger Game</p>
             </Box>
             <Box className="service-txt">
-              <p>서울 강남구 도곡로63길 25 1층</p>
+              <p>The Celebrity Treatment, One Burger at a Time</p>
             </Box>
             <Box className="signup">
               {!authMember ? (
