@@ -234,7 +234,7 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
       </Modal>
 
       <Modal
-        aria-labelledby="transition-modal-title"
+        aria-labelledby="transition-modal-"
         aria-describedby="transition-modal-description"
         className={classes.modal}
         open={loginOpen}

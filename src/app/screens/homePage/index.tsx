@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Statistics from "./Statistics"; // Make sure ./Statistics.tsx exists in the same folder as this file
+import Statistics from "./Statistics";
 import PopularDishes from "./PopularBurgers";
 import NewDishes from "./NewDishes";
 import Advertisement from "./Advertisement";
