@@ -45,16 +45,16 @@ interface ChosenProductProps {
   onAdd: (item: CartItem) => void;
 }
 
-
 export default function ChosenProduct(props: ChosenProductProps) {
   const { onAdd } = props;
   const { productId } = useParams<{ productId: string }>();
   const { setRestaurant, setChosenProduct } = actionDispatch(useDispatch());
   const { chosenProduct } = useSelector(chosenProductRetriever);
-const { restaurant } = useSelector(restaurantRetriever);
-
+  const { restaurant } = useSelector(restaurantRetriever);
 
   useEffect(() => {
+    if (!productId) return;
+
     const product = new ProductService();
 
     product
@@ -68,9 +68,10 @@ const { restaurant } = useSelector(restaurantRetriever);
       .getRestaurant()
       .then((data) => setRestaurant(data))
       .catch((err) => console.log(err));
-  }, []);
+  }, [productId]);
 
   if (!chosenProduct) return null;
+
   return (
     <div className={"chosen-product"}>
       <Box className={"title"}>Product Detail</Box>
@@ -87,7 +88,11 @@ const { restaurant } = useSelector(restaurantRetriever);
               const imagePath = `${serverApi}/${ele}`;
               return (
                 <SwiperSlide key={index}>
-                  <img className="slider-image" src={imagePath} />
+                  <img
+                    className="slider-image"
+                    src={imagePath}
+                    alt={`Product ${index + 1}`}
+                  />
                 </SwiperSlide>
               );
             })}
@@ -95,9 +100,11 @@ const { restaurant } = useSelector(restaurantRetriever);
         </Stack>
         <Stack className={"chosen-product-info"}>
           <Box className={"info-box"}>
-            <strong className={"product-name"}>{chosenProduct?.productName}</strong>
+            <strong className={"product-name"}>
+              {chosenProduct?.productName}
+            </strong>
             <span className={"resto-name"}>{restaurant?.memberNick}</span>
-                        <span className={"resto-name"}>{restaurant?.memberPhone}</span>
+            <span className={"resto-name"}>{restaurant?.memberPhone}</span>
             <Box className={"rating-box"}>
               <Rating name="half-rating" defaultValue={2.5} precision={0.5} />
               <div className={"evaluation-box"}>
@@ -107,27 +114,32 @@ const { restaurant } = useSelector(restaurantRetriever);
                 </div>
               </div>
             </Box>
-            <p className={"product-desc"}>{chosenProduct?.productDesc? chosenProduct?.productDesc: "No Description Available"}</p>
+            <p className={"product-desc"}>
+              {chosenProduct?.productDesc
+                ? chosenProduct?.productDesc
+                : "No Description Available"}
+            </p>
             <Divider height="1" width="100%" bg="#000000" />
             <div className={"product-price"}>
               <span>Price:</span>
               <span>${chosenProduct?.productPrice}</span>
             </div>
             <div className={"button-box"}>
-              <Button variant="contained"
-                                      onClick={(e) => {
-                          
-                          onAdd({
-                            _id: chosenProduct._id,
-                            quantity: 1,
-                            name: chosenProduct.productName,
-                            price: chosenProduct.productPrice,
-                            image: chosenProduct.productImages[0],
-
-                          });
-                          e.stopPropagation();
-                        }}
-              >Add To Basket</Button>
+              <Button
+                variant="contained"
+                onClick={(e) => {
+                  onAdd({
+                    _id: chosenProduct._id,
+                    quantity: 1,
+                    name: chosenProduct.productName,
+                    price: chosenProduct.productPrice,
+                    image: chosenProduct.productImages[0],
+                  });
+                  e.stopPropagation();
+                }}
+              >
+                Add To Basket
+              </Button>
             </div>
           </Box>
         </Stack>

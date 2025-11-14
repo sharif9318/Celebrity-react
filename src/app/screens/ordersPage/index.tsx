@@ -17,24 +17,25 @@ import TabPanel from "@mui/lab/TabPanel";
 import { OrderStatus } from "../../../lib/enums/order.enum";
 import OrderService from "../../services/OrderService";
 import { useGlobals } from "../../hooks/useGlobals";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { serverApi } from "../../../lib/config";
 import { MemberType } from "../../../lib/enums/member-enum";
 
 /**
  REDUX SLICE & SELECTOR */
 const actionDispatch = (dispatch: Dispatch) => ({
-    setPausedOrders: (data: Order[]) => dispatch(setPausedOrders(data)),
-    setProcessOrders: (data: Order[]) => dispatch(setProcessOrders(data)),
-    setFinishedOrders: (data: Order[]) => dispatch(setFinishedOrders(data)),
+  setPausedOrders: (data: Order[]) => dispatch(setPausedOrders(data)),
+  setProcessOrders: (data: Order[]) => dispatch(setProcessOrders(data)),
+  setFinishedOrders: (data: Order[]) => dispatch(setFinishedOrders(data)),
 });
 
 export default function OrdersPage() {
   const dispatch = useDispatch();
-  const { setPausedOrders, setProcessOrders, setFinishedOrders } = actionDispatch(useDispatch());
+  const { setPausedOrders, setProcessOrders, setFinishedOrders } =
+    actionDispatch(useDispatch());
 
-  const {orderBuilder, authMember} = useGlobals();
-  const history = useHistory()
+  const { orderBuilder, authMember } = useGlobals();
+  const navigate = useNavigate();
   const [value, setValue] = useState("1");
   const [orderInquiry, setOrderInquiry] = useState<OrderInquiry>({
     page: 1,
@@ -61,19 +62,28 @@ export default function OrdersPage() {
       .catch((err) => console.log(err));
   }, [orderInquiry, orderBuilder]);
 
+  // Redirect if not authenticated
+  useEffect(() => {
+    if (!authMember) {
+      navigate("/");
+    }
+  }, [authMember, navigate]);
+
   /**
    HANDLERS **/
 
   const handleChange = (e: SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
-if (!authMember) history.push('/');
+
+  // Show nothing while redirecting
+  if (!authMember) return null;
 
   return (
     <div className="order-page">
       <Container className="order-container">
         <Stack direction="row" spacing={2}>
-          {/* Left Section */} 
+          {/* Left Section */}
           <Stack className="order-left" flex={1}>
             <TabContext value={value}>
               <Box className="order-nav-frame">
@@ -91,11 +101,11 @@ if (!authMember) history.push('/');
                 </Box>
               </Box>
 
-              <Stack className={'order-main-content'}>
-    <PausedOrders setValue={setValue} />
-    <ProcessOrders setValue={setValue} />
-    <FinishedOrders />
-</Stack>
+              <Stack className={"order-main-content"}>
+                <PausedOrders setValue={setValue} />
+                <ProcessOrders setValue={setValue} />
+                <FinishedOrders />
+              </Stack>
             </TabContext>
           </Stack>
 
@@ -106,9 +116,9 @@ if (!authMember) history.push('/');
                 <div className="order-user-img">
                   <img
                     src={
-                     authMember?.memberImage
-                     ? `${serverApi}/${authMember.memberImage}`
-                     : '/icons/default-user.svg'
+                      authMember?.memberImage
+                        ? `${serverApi}/${authMember.memberImage}`
+                        : "/icons/default-user.svg"
                     }
                     className="order-user-avatar"
                     alt="User Avatar"
@@ -116,55 +126,83 @@ if (!authMember) history.push('/');
                   <div className="order-user-icon-box">
                     <img
                       src={
-                          authMember?.memberType === MemberType.RESTAURANT
-                                             ? "/icons/restaurant.svg"
-                                             : "/icons/user-badge.svg"
+                        authMember?.memberType === MemberType.RESTAURANT
+                          ? "/icons/restaurant.svg"
+                          : "/icons/user-badge.svg"
                       }
                       className="order-user-profit-img"
                       alt="User Badge"
                     />
                   </div>
                 </div>
-                <span className="order-user-name">{authMember?.memberNick}</span>
-                <span className="order-user-profit">{authMember?.memberType}</span>
+                <span className="order-user-name">
+                  {authMember?.memberNick}
+                </span>
+                <span className="order-user-profit">
+                  {authMember?.memberType}
+                </span>
               </Box>
               <Box className="liner" />
               <Box className="order-user-address">
                 <LocationOnIcon className="order-user-icon" />
                 <span className="order-user-address-txt">
-                                    {authMember?.memberAddress
+                  {authMember?.memberAddress
                     ? authMember.memberAddress
                     : "No address provided"}
-                  </span>
+                </span>
               </Box>
-              
             </Box>
 
-<Box className="order-info-box">
-  <Box className="payment-box">
-    <div className="payment-header">
-      <span className="payment-title">Payment Details</span>
-      <div className="card-icons">
-        <img src="/icons/visa-card.svg" alt="Visa" className="card-icon" />
-        <img src="/icons/master-card.svg" alt="MasterCard" className="card-icon" />
-        <img src="/icons/western-card.svg" alt="Amex" className="card-icon" />
-      </div>
-    </div>
+            <Box className="order-info-box">
+              <Box className="payment-box">
+                <div className="payment-header">
+                  <span className="payment-title">Payment Details</span>
+                  <div className="card-icons">
+                    <img
+                      src="/icons/visa-card.svg"
+                      alt="Visa"
+                      className="card-icon"
+                    />
+                    <img
+                      src="/icons/master-card.svg"
+                      alt="MasterCard"
+                      className="card-icon"
+                    />
+                    <img
+                      src="/icons/western-card.svg"
+                      alt="Amex"
+                      className="card-icon"
+                    />
+                  </div>
+                </div>
 
-    <form className="payment-form">
-      <input type="text" placeholder="Cardholder Name" className="payment-input" />
-      <input type="text" placeholder="Card Number" className="payment-input" />
-      <div className="payment-row">
-        <input type="text" placeholder="MM/YY" className="payment-input small" />
-        <input type="text" placeholder="CVV" className="payment-input small" />
-      </div>
-      <button className="pay-button">PAY NOW</button>
-    </form>
-  </Box>
-</Box>
-
-
-            
+                <form className="payment-form">
+                  <input
+                    type="text"
+                    placeholder="Cardholder Name"
+                    className="payment-input"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Card Number"
+                    className="payment-input"
+                  />
+                  <div className="payment-row">
+                    <input
+                      type="text"
+                      placeholder="MM/YY"
+                      className="payment-input small"
+                    />
+                    <input
+                      type="text"
+                      placeholder="CVV"
+                      className="payment-input small"
+                    />
+                  </div>
+                  <button className="pay-button">PAY NOW</button>
+                </form>
+              </Box>
+            </Box>
           </Stack>
         </Stack>
       </Container>

@@ -58,31 +58,31 @@ export default function HomeNavbar(props: HomeNavbarProps) {
           </Box>
           <Stack className="links">
             <Box className={"hover-line"}>
-              <NavLink to="/" activeClassName={"underline"}>
+              <NavLink to="/" className={"underline"}>
                 Home
               </NavLink>
             </Box>
             <Box className={"hover-line"}>
-              <NavLink to="/products" activeClassName={"underline"}>
+              <NavLink to="/products" className={"underline"}>
                 Products
               </NavLink>
             </Box>
             {authMember ? (
               <Box className={"hover-line"}>
-                <NavLink to="/orders" activeClassName={"underline"}>
+                <NavLink to="/orders" className={"underline"}>
                   Orders
                 </NavLink>
               </Box>
             ) : null}
             {authMember ? (
               <Box className="hover-line">
-                <NavLink to="/member-page" activeClassName="underline">
+                <NavLink to="/member-page" className="underline">
                   My Page
                 </NavLink>
               </Box>
             ) : null}
             <Box className="hover-line">
-              <NavLink to="/help" activeClassName="underline">
+              <NavLink to="/help" className="underline">
                 Help
               </NavLink>
             </Box>

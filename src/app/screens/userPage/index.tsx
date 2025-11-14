@@ -5,16 +5,16 @@ import TelegramIcon from "@mui/icons-material/Telegram";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import { Settings } from "./Settings";
 import "../../../css/userPage.css";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useGlobals } from "../../hooks/useGlobals";
 import { serverApi } from "../../../lib/config";
 import { MemberType } from "../../../lib/enums/member-enum";
 
 export default function UserPage() {
-  const history = useHistory()
-  const {authMember} = useGlobals();
+  const navigate = useNavigate();
+  const { authMember } = useGlobals();
 
-  if (!authMember) history.push('/');
+  if (!authMember) navigate("/");
   return (
     <div className={"user-page"}>
       <Container>
@@ -45,19 +45,26 @@ export default function UserPage() {
                     className={"order-user-avatar"}
                   />
                   <div className={"order-user-icon-box"}>
-                    <img src={
-                      authMember?.memberType === MemberType.RESTAURANT
-                     ? "/icons/restaurant.svg"
-                     : "/icons/user-badge.svg"} />
+                    <img
+                      src={
+                        authMember?.memberType === MemberType.RESTAURANT
+                          ? "/icons/restaurant.svg"
+                          : "/icons/user-badge.svg"
+                      }
+                    />
                   </div>
                 </div>
-                <span className={"order-user-name"}>{authMember?.memberNick}</span>
-                <span className={"order-user-prof"}>{authMember?.memberType}</span>
+                <span className={"order-user-name"}>
+                  {authMember?.memberNick}
+                </span>
+                <span className={"order-user-prof"}>
+                  {authMember?.memberType}
+                </span>
                 <span className={"order-user-prof"}>
                   {authMember?.memberAddress
                     ? authMember.memberAddress
                     : "No address provided"}
-                  </span>
+                </span>
               </Box>
               <Box className={"user-media-box"}>
                 <FacebookIcon />
@@ -66,10 +73,10 @@ export default function UserPage() {
                 <YouTubeIcon />
               </Box>
               <p className={"user-desc"}>
-                {
-    authMember?.memberDesc
-    ? authMember.memberDesc
-    : "no description"}</p>
+                {authMember?.memberDesc
+                  ? authMember.memberDesc
+                  : "no description"}
+              </p>
             </Box>
           </Stack>
         </Stack>

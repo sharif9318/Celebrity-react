@@ -14,14 +14,16 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "@types/react-redux": "^7.1.34",
     "axios": "^0.27.2",
     "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-dom": "^18.0.0",
-    "react-redux": "^7.2.8",
-    "react-router-dom": "^5.3.4",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^7.9.6",
     "react-scripts": "5.0.0",
     "redux-logger": "^3.0.6",
+    "socket.io-client": "^4.7.5",
     "styled-components": "^5.3.5",
     "sweetalert2": "^11.4.23",
     "swiper": "^8.3.1",
@@ -30,6 +32,9 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
+    "@svgr/babel-preset": "6",
+    "@svgr/core": "^8.1.0",
+    "@svgr/webpack": "^8.1.0",
     "@types/axios": "^0.14.4",
     "@types/jest": "^27.5.2",
     "@types/node": "^17.0.45",
@@ -37,6 +42,7 @@
     "@types/react-dom": "^18.2.18",
     "@types/react-router-dom": "^5.3.3",
     "@types/redux-logger": "^3.0.13",
+    "@types/socket.io-client": "^3.0.0",
     "@types/styled-components": "^5.1.34"
   },
   "scripts": {
