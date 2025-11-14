@@ -13,7 +13,6 @@ import { setPausedOrders, setProcessOrders, setFinishedOrders } from "./slice";
 
 import "../../../css/order.css";
 import { Order, OrderInquiry } from "../../../lib/types/order";
-import TabPanel from "@mui/lab/TabPanel";
 import { OrderStatus } from "../../../lib/enums/order.enum";
 import OrderService from "../../services/OrderService";
 import { useGlobals } from "../../hooks/useGlobals";
@@ -30,14 +29,13 @@ const actionDispatch = (dispatch: Dispatch) => ({
 });
 
 export default function OrdersPage() {
-  const dispatch = useDispatch();
   const { setPausedOrders, setProcessOrders, setFinishedOrders } =
     actionDispatch(useDispatch());
 
   const { orderBuilder, authMember } = useGlobals();
   const navigate = useNavigate();
   const [value, setValue] = useState("1");
-  const [orderInquiry, setOrderInquiry] = useState<OrderInquiry>({
+  const [orderInquiry] = useState<OrderInquiry>({
     page: 1,
     limit: 5,
     orderStatus: OrderStatus.PAUSE,
@@ -60,7 +58,13 @@ export default function OrdersPage() {
       .getMyOrders({ ...orderInquiry, orderStatus: OrderStatus.FINISH })
       .then((data) => setFinishedOrders(data))
       .catch((err) => console.log(err));
-  }, [orderInquiry, orderBuilder]);
+  }, [
+    orderInquiry,
+    orderBuilder,
+    setPausedOrders,
+    setProcessOrders,
+    setFinishedOrders,
+  ]);
 
   // Redirect if not authenticated
   useEffect(() => {

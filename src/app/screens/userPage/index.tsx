@@ -42,6 +42,7 @@ export default function UserPage() {
                         ? `${serverApi}/${authMember.memberImage}`
                         : "/icons/default-user.svg"
                     }
+                    alt=""
                     className={"order-user-avatar"}
                   />
                   <div className={"order-user-icon-box"}>
@@ -51,6 +52,7 @@ export default function UserPage() {
                           ? "/icons/restaurant.svg"
                           : "/icons/user-badge.svg"
                       }
+                      alt=""
                     />
                   </div>
                 </div>

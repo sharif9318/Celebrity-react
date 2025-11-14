@@ -52,14 +52,14 @@ export default function Products(props: ProductsProps) {
       .getProducts(productSearch)
       .then((data) => setProducts(data))
       .catch((err) => console.log(err));
-  }, [productSearch]);
+  }, [productSearch, setProducts]);
 
   useEffect(() => {
     if (searchText === "") {
       productSearch.search = "";
       setProductSearch({ ...productSearch });
     }
-  }, [searchText]);
+  }, [searchText, productSearch]);
 
   /**
     HANDLERS **/
@@ -270,6 +270,7 @@ export default function Products(props: ProductsProps) {
                           <img
                             src={"/icons/shopping-cart.svg"}
                             style={{ display: "flex" }}
+                            alt="Add to cart"
                           />
                         </Button>
                         <Button className={"view-btn"} sx={{ right: "36px" }}>
@@ -384,6 +385,7 @@ export default function Products(props: ProductsProps) {
               width="1320"
               height="500"
               referrerPolicy="no-referrer-when-downgrade"
+              title="Google Map"
             ></iframe>
           </Stack>
         </Container>

@@ -53,7 +53,7 @@ export default function HomeNavbar(props: HomeNavbarProps) {
         <Stack className="menu">
           <Box>
             <NavLink to="/">
-              <img className="brand-logo" alt="" src="/icons/logo.png" />
+              <img className="brand-logo" alt="Logo" src="/icons/logo.png" />
             </NavLink>
           </Box>
           <Stack className="links">
@@ -111,7 +111,6 @@ export default function HomeNavbar(props: HomeNavbarProps) {
                     ? `${serverApi}/${authMember?.memberImage}`
                     : "/icons/default-user.svg"
                 }
-                aria-haspopup={"true"}
                 onClick={handleLogoutClick}
               />
             )}
