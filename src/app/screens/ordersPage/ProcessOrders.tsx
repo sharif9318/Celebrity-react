@@ -89,12 +89,17 @@ export default function ProcessOrders(props: ProcessOrdersProps) {
                 <Box className={"box-total"}>
                   <p>Product price</p>
                   <p>${order.orderTotal - order.orderDelivery}</p>
-                  <img src={"/icons/plus.svg"} style={{ marginLeft: "20px" }} />
+                  <img
+                    src={"/icons/plus.svg"}
+                    style={{ marginLeft: "20px" }}
+                    alt="Plus"
+                  />
                   <p>delivery cost</p>
                   <p>${order.orderDelivery}</p>
                   <img
                     src={"/icons/pause.svg"}
                     style={{ marginLeft: "20px" }}
+                    alt="Pause"
                   />
                   <p>Total</p>
                   <p>${order.orderTotal}</p>
@@ -125,6 +130,7 @@ export default function ProcessOrders(props: ProcessOrdersProps) {
               <img
                 src={"/icons/noimage-list.svg"}
                 style={{ width: 300, height: 300 }}
+                alt="No data"
               />
             </Box>
           ))}

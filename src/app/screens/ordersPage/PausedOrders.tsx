@@ -112,12 +112,17 @@ export default function PausedOrders(props: PausedOrdersProps) {
                 <Box className={"box-total"}>
                   <p>Product price</p>
                   <p>${order.orderTotal - order.orderDelivery}</p>
-                  <img src={"/icons/plus.svg"} style={{ marginLeft: "20px" }} />
+                  <img
+                    src={"/icons/plus.svg"}
+                    style={{ marginLeft: "20px" }}
+                    alt="Plus"
+                  />
                   <p>Delivery cost</p>
                   <p>${order.orderDelivery}</p>
                   <img
                     src={"/icons/pause.svg"}
                     style={{ marginLeft: "20px" }}
+                    alt="Pause"
                   />
                   <p>Total</p>
                   <p>${order.orderTotal}</p>
@@ -144,7 +149,7 @@ export default function PausedOrders(props: PausedOrdersProps) {
           );
         })}
         {!pausedOrders ||
-          (pausedOrders.length == 0 && (
+          (pausedOrders.length === 0 && (
             <Box
               display={"flex"}
               flexDirection={"row"}
@@ -153,6 +158,7 @@ export default function PausedOrders(props: PausedOrdersProps) {
               <img
                 src={"/icons/noimage-list.svg"}
                 style={{ width: 300, height: 300 }}
+                alt="No data"
               />
             </Box>
           ))}

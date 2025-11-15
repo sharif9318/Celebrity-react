@@ -112,6 +112,7 @@ export default function HomeNavbar(props: HomeNavbarProps) {
                     : "/icons/default-user.svg"
                 }
                 onClick={handleLogoutClick}
+                alt="User avatar"
               />
             )}
 
