@@ -46,20 +46,21 @@ export default function Products(props: ProductsProps) {
   const [searchText, setSearchText] = useState<string>("");
   const navigate = useNavigate();
 
+  // ✅ FIXED: Removed setProducts from dependencies
   useEffect(() => {
     const product = new ProductService();
     product
       .getProducts(productSearch)
       .then((data) => setProducts(data))
       .catch((err) => console.log(err));
-  }, [productSearch, setProducts]);
+  }, [productSearch]);
 
+  // ✅ FIXED: Removed productSearch from dependencies and used functional setState
   useEffect(() => {
     if (searchText === "") {
-      productSearch.search = "";
-      setProductSearch({ ...productSearch });
+      setProductSearch((prev) => ({ ...prev, search: "" }));
     }
-  }, [searchText, productSearch]);
+  }, [searchText]);
 
   /**
     HANDLERS **/
